@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import TodoList from '../TodoList';
 
-import { deleteElementFromId, updateCompleteFromElement } from './logic';
+import { deleteElementFromId, updateCompleteFromElement, updateTodoListWithNewElement } from './logic';
 
 function TodoListApp() {
   const [text, setText] = useState('');
@@ -17,8 +17,9 @@ function TodoListApp() {
   };
 
   const handleAddTodo = () => {
-    if (text.trim() !== '') {
-      setTodoList(updateTodoListWithNewElement(todoList, text));
+    const cleanText = text.trim();
+    if (cleanText !== '') {
+      setTodoList(updateTodoListWithNewElement(todoList, cleanText));
     }
 
     setText('');

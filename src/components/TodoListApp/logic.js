@@ -11,15 +11,13 @@ export const updateCompleteFromElement = (todoList, id) => todoList.map((element
   return { ...element };
 });
 
-export const updateTodoListWithNewElement = (todoList, text) => {
-  return [
-    ...todoList,
-    {
-      id: v4(),
-      complete: false,
-      text,
-    },
-  ]
-}
+export const updateTodoListWithNewElement = (todoList, text) => [
+  ...todoList,
+  {
+    id: v4(),
+    complete: false,
+    text,
+  },
+];
 
 export const deleteElementFromId = (todoList, id) => todoList.filter((element) => element.id !== id);
