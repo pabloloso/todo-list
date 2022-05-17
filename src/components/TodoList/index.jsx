@@ -18,7 +18,11 @@ function TodoList({ todoList, handleCompleteTodo, handleDeleteTodo }) {
 }
 
 TodoList.propTypes = {
-  todoList: PropTypes.arrayOf.isRequired,
+  todoList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    complete: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+  })).isRequired,
   handleCompleteTodo: PropTypes.func.isRequired,
   handleDeleteTodo: PropTypes.func.isRequired,
 };

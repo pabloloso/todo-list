@@ -6,20 +6,25 @@ import { deleteElementFromId, updateCompleteFromElement, updateTodoListWithNewEl
 
 function TodoListApp() {
   const [text, setText] = useState('');
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState(JSON.parse(localStorage.getItem('todoList')) || []);
+
+  const updateTodoList = (newTodoList) => {
+    setTodoList(newTodoList);
+    localStorage.setItem('todoList', JSON.stringify(newTodoList));
+  };
 
   const handleCompleteTodo = (id) => {
-    setTodoList(updateCompleteFromElement(todoList, id));
+    updateTodoList(updateCompleteFromElement(todoList, id));
   };
 
   const handleDeleteTodo = (id) => {
-    setTodoList(deleteElementFromId(todoList, id));
+    updateTodoList(deleteElementFromId(todoList, id));
   };
 
   const handleAddTodo = () => {
     const cleanText = text.trim();
     if (cleanText !== '') {
-      setTodoList(updateTodoListWithNewElement(todoList, cleanText));
+      updateTodoList(updateTodoListWithNewElement(todoList, cleanText));
     }
 
     setText('');
